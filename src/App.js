@@ -2,42 +2,19 @@ import React from 'react';
 
 class App extends React.Component
 {
-  constructor(props){
-    super(props);
-    console.log("Constructor");
+  state = {
+    isLoading: true,
+    movies: []
+  };
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({isLoading: false});
+    }, 5000);
   }
-  state = 
-  {
-    count: 0
-  };
-  add = () => {
-    this.setState(current => ({ count: current.count + 1}));
-    console.log("add");
-  };
-  minus = () => {
-    this.setState(current => ({ count: current.count - 1}));
-    console.log("minus");
-  };
+  render(){
+    const { isLoading } = this.state;
+    return <div>{isLoading ? "Loading..." : "we are ready"}</div>;
+  }
 
-  componentDidMount() {
-    console.log("Component rendered");
-  }
-  componentDidUpdate() {
-    console.log("I just updated");
-  }
-  componentWillUnmount() {
-    console.log("Goodbye, cruel world");
-  }
-  render()
-  {
-    console.log("i'm Rendering");
-    return (
-      <div>
-        <h1>The Number is: {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.minus}>Minus</button>
-      </div>
-    )
-  }
 }
 export default App;
